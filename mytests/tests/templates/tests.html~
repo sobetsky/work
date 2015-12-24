@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+
+{% block tests %}
+
+<div class='large-10 large-offset-1 columns'>
+
+  {% for test in tests %}
+    <h4><a href='/test/{{ test.id }}'>{{ test.subject }}</a></h4><hr>
+  {% endfor %} 
+  
+
+
+</div>
+
+<div class='row'>
+<div class="large-2 columns">1</div>
+<div class="large-8 columns">2</div>
+<div class="large-2 columns">3</div>
+</div>
+
+{% endblock %}

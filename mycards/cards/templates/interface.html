@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<div class='large-12 large-offset-0 columns'>
+  
+  <h2>interface</h2>
+  <hr>
+  <div class='large-12 large-offset-0 columns'>
+    <h5>functuon</h5>
+    <ul>
+      <li>List of cards by serios, namber, date issue, date_end_ectivity, status</li>
+      <li>Search for the same fields.</li>
+      <li>View Profile cards with purchase history on it.</li>
+      <li>activet / deactivet</li>
+      <li>delete card</li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class='row'>
+<div class='large-8 large-offset-2 columns'>
+  <form action='/cards/interface/' method='post'>
+    {% csrf_token %}
+ 	a. Search series
+  	<input type='text' name='q_series' size='4'>
+  	<input class='button' type='submit' value='search'>
+  	<hr>
+  	b. Search number
+  	<input type='text' name='q_number' size='30'>
+  	<input class='button' type='submit' value='search'>
+  	<hr>
+  	c. Search status
+  	<input type='text' name='q_status' size='30'>
+  	<input class='button' type='submit' value='search'>
+  	<hr>
+  	d. Search date
+  	<input type='text' name='q_date' size='30'>
+  	<input class='button' type='submit' value='search'>
+  	<hr>
+  </form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block cards %}
+    {% for card in cards_serie_filter %}
+      {{ card.date_issue }}, {{ card.series.series }}, {{ card.number }}<br>
+    {% endfor %}
+{% endblock %}
+
+
+
+
+

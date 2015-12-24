@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<div class='large-12 large-offset-0 columns'>
+  
+  <h2>generator</h2>
+  <hr>
+  
+    <h1>1. </h1>
+    
+    
+     <h3>all issues:</h3>
+		{% for issue in issues %}
+		  <p>{{ issue.date_of_approval }} - {{ issue.series }}, {{ issue.period }}, 
+		  {{ issue.quantity }}</p>
+		  <hr>
+		{% endfor %}
+    
+</div>
+<div class='row'>	
+  <div class='large-4 large-offset-4 columns'>
+    <h2>Add issue</h2>
+		<form action='/cards/generator/' method='post'>
+			{% csrf_token %}
+			{{ form.as_ul }}
+			<input class='button' type='submit' value='Add issue, Generate cards'>
+		</form>
+  </div>
+</div>
+{{ test }}
+
+
+
+
+
+
+
+
+{% endblock %}

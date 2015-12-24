@@ -1,0 +1,43 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tests</title>
+    <meta content="">
+    <style></style>
+    <link rel='stylesheet' type='text/css' href="{% static 'css/foundation.css' %}">
+  </head>
+  
+  
+  
+  <body>
+    
+	  <div class='top-bar'>
+		<div class='top-bar-left'>
+		{{ username }}
+		</div>
+		<div class='top-bar-right'>
+		   <ul class='menu'>
+		      {% if username %}
+		        <li><a class='success button' href='/accounts/logout/'>Logout ({{ username }})</a></li>
+		      {% else %}  
+		        <li><a class='button' href='/accounts/login/'>Login</a></li>
+		        <li><a class='alert button ' href='/register/'>Register</a></li>
+		      {% endif %}
+		    </ul>
+		</div>
+	  </div>
+    
+  	<h2><img src="{% static 'img/200.gif' %}" style='height: 150px'> Tests</h2>
+    
+    
+    
+    <div class='row'>
+      {% block login %}{% endblock %}
+      {% block tests %}{% endblock %}
+      {% block  test %}{% endblock %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+    <link rel='stylesheet' type='text/css' href="{% static 'css/foundation.css' %}">
+  </head>
+  
+  <body>
+	<div class='top-bar'>
+	  <div class='top-bar-left'>
+		
+		<ul class='menu'>
+		  <li>{{ request.user }} menu: &nbsp;&nbsp; </li>
+		  <li><a class='success button' href='/cards/0/'>page_0</a></li>
+		  <li><a class='secondary button' href='/cards/generator/'>generator</a></li>
+		  
+		  <li><a class='secondary button' href='/cards/interface/'>interface</a></li>
+		</ul>
+	  </div>
+	  <div class='top-bar-right'>
+	    <ul class='menu'>
+		  {% if request.user.is_authenticated %}
+		    <li><a class='success button' href='/accounts/logout/'>Logout ({{ request.user }})</a></li>
+		  {% else %}  
+		    <li><a class='button' href='/accounts/login/'>Login</a></li>
+		    <li><a class='alert button ' href='/registration/'>Register</a></li>
+		  {% endif %}
+	    </ul>
+	  </div>
+	</div>
+    
+  	<h2>
+  	  <a href=''><img src="{% static 'img/200.gif' %}" style='height: 150px'></a>
+  	  <a href=''> Cards</a>
+  	</h2>
+    
+    <div class='row'>
+      {% block login %}{% endblock %}
+      {% block cards %}{% endblock %}
+      
+    </div>
+
+  
+  
+  </body>
+</html>

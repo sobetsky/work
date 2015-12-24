@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block  test %}
+
+
+	<h2>{{ test.subject }}</h2>
+
+	<h2><a href='/test/testing/{{ test.id }}/{{ 1 }}'><i>Start testing</i></a></h2>
+	
+	<div class='large-11 large-offset-1 columns'>
+	  {% for quetion in quetions %}
+	    <h3>{{ quetion.quetion }}</h3>
+	  {% endfor %}
+	</div>
+{% endblock %}

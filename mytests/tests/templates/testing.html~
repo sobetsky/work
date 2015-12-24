@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block  test %}
+	<h3>{{ quetion.quetion }}</h3>
+	<div class='large-10 large-offset-1 columns'>
+	{{ error }}
+	<form action='/test/testing/{{ test_id }}/{{ quetion_id }}/' method='post'>
+	  {% csrf_token %}
+	  <input type='radio' name='answer' value='one'>{{ quetion.answer_1 }}<br>
+	  <input type='radio' name='answer' value='two'>{{ quetion.answer_2 }}<br>
+	  <input type='radio' name='answer' value='three'>{{ quetion.answer_3 }}<br>
+	  <input type='submit' value='Answer'> <i>And move on to the next question.</i>
+	</form>
+	</div>
+{% endblock %}
+

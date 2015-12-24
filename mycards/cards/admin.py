@@ -1,0 +1,22 @@
+from django.contrib import admin
+
+# Register your models here.
+
+from models import Issues, Cards, Profile, Purchases, Status, Periods
+
+class CardsAdmin(admin.ModelAdmin):
+	list_display=('series', 'number', 'status')
+	search_fields=('number', 'status')
+
+class IssuesAdmin(admin.ModelAdmin):
+	list_display=('date_of_approval', 'series', 'quantity')
+
+
+
+admin.site.register(Issues, IssuesAdmin)
+admin.site.register(Cards, CardsAdmin)
+admin.site.register(Profile)
+admin.site.register(Purchases)
+admin.site.register(Status)
+admin.site.register(Periods)
+
