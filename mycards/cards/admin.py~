@@ -6,10 +6,10 @@ from models import Issues, Cards, Profile, Purchases, Status, Periods
 
 class CardsAdmin(admin.ModelAdmin):
 	list_display=('series', 'number', 'status')
-	search_fields=('series', 'number', 'status')
-	
+	search_fields=('number', 'status')
+
 class IssuesAdmin(admin.ModelAdmin):
-	list_display=('date_of_approval', 'series', 'quantity')
+	list_display=( 'series')
 
 
 

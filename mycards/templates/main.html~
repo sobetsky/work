@@ -39,8 +39,10 @@
     
     <div class='row'>
       {% block login %}{% endblock %}
+   
+   
       {% block cards %}{% endblock %}
-      {% block number %}{% endblock %}
+      
     </div>
 
   

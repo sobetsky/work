@@ -9,7 +9,7 @@ class CardsAdmin(admin.ModelAdmin):
 	search_fields=('number', 'status')
 
 class IssuesAdmin(admin.ModelAdmin):
-	list_display=('date_of_approval', 'series', 'quantity')
+	list_display=( 'series',)
 
 
 

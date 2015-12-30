@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
 from models import Issues, Cards, Profile, Purchases, Status, Periods
-from forms import IssuesForm
-
+from forms import IssuesForm, ProfileForm
+import sqlite3
 def page_0(request):
 
 	return render_to_response('page_0.html', locals())
@@ -30,7 +30,7 @@ def generator(request):
 				issue = Issues.objects.get(series = request.POST['series'])
 				p = Cards(
 						series = issue,
-						number = i, 
+						number = int(str(issue.series) + str(i+1)), 
 						status = Status.objects.get(status='no active')
 					)
 				p.save()
@@ -50,15 +50,43 @@ def interface(request):
 	
 	if 'q_series' in request.POST:
 		q = request.POST.get('q_series')
-		args['cards_serie_filter'] = Cards.objects.filter(series__series__icontains = q)
-	if 'q_number' in request.POST:
-		q = request.POST.get('q_number')
-		args['cards_number_filter'] = Cards.objects.filter(number__icontains = q)
-		args['q'] = 'OK'
+		if not q:
+			pass
+		else:
+			args['cards_serie_filter'] = Cards.objects.filter(
+										     series__series__icontains = q)
+	
+	if request.POST:
+		#q = request.POST.get('q_number')
+		#args['cards_number_filter'] = Cards.objects.filter(number__icontains = q)
+		
 		return render_to_response('interface.html', args)
 	return render_to_response('interface.html', args)
+#___
+
+
 	
-	
+@login_required
+def card(request, card_id):
+	args = {}
+	args.update(csrf(request))
+	args['request'] = request
+	card = Cards.objects.get(id=card_id)
+	args['card'] = card
+	new_form = ProfileForm
+	args['form'] = new_form
+	if request.POST:
+		form = ProfileForm(request.POST)
+		if form.is_valid():
+			p = form.save()
+			card.profile = p
+			card.save()
+		else:
+			args['form'] = new_form
+			
+		return render_to_response('card.html', args)
+	return render_to_response('card.html', args)
+#___	
 	
 	
 	

@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block login %}
+<div class='large-3 large-offset-1 columns'>
+  id: {{ card.id }}<br>
+  series: {{ card.series.series }}<br>
+  period: {{ card.series.period }}<br>
+  number: {{ card.number }}<br>
+</div>
+{% endblock %}
+
+
+{% block cards %}
+  <div class='large-7 columns'>
+    
+    {% if card.profile %}
+      profile:<br>
+      {{ card.profile.first_name }} {{ card.profile.second_name }} <br>
+    {% else %}
+      create profile:<br>
+      <form action='' method='post'>
+       {% csrf_token %}
+       {{ form }}
+       <input class='button' type='submit' value='create'>
+      </form>
+      {{ d }}<br> {{ p.id }}
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+

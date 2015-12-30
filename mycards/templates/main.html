@@ -14,7 +14,7 @@
 		
 		<ul class='menu'>
 		  <li>{{ request.user }} menu: &nbsp;&nbsp; </li>
-		  <li><a class='success button' href='/cards/0/'>page_0</a></li>
+		  <li><a class='success button' href='/cards/page_0/'>page_0</a></li>
 		  <li><a class='secondary button' href='/cards/generator/'>generator</a></li>
 		  
 		  <li><a class='secondary button' href='/cards/interface/'>interface</a></li>
@@ -39,6 +39,8 @@
     
     <div class='row'>
       {% block login %}{% endblock %}
+   
+   
       {% block cards %}{% endblock %}
       
     </div>

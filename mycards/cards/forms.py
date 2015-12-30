@@ -9,4 +9,8 @@ class IssuesForm(ModelForm):
 	
 	#date_of_approval = forms.DateTimeField()
 	
+class ProfileForm(ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['date_creation', 'first_name', 'second_name']
 

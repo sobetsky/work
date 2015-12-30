@@ -2,25 +2,10 @@
 {% load staticfiles %}
 
 {% block login %}
-<div class='large-12 large-offset-0 columns'>
-  
-  <h2>interface</h2>
-  <hr>
-  <div class='large-12 large-offset-0 columns'>
-    <h5>functuon</h5>
-    <ul>
-      <li>List of cards by serios, namber, date issue, date_end_ectivity, status</li>
-      <li>Search for the same fields.</li>
-      <li>View Profile cards with purchase history on it.</li>
-      <li>activet / deactivet</li>
-      <li>delete card</li>
-      
-    </ul>
-  </div>
-</div>
 
-<div class='row'>
-<div class='large-8 large-offset-2 columns'>
+
+
+<div class='large-3 large-offset-1 columns'>
   <form action='/cards/interface/' method='post'>
     {% csrf_token %}
  	a. Search series
@@ -41,16 +26,34 @@
   	<hr>
   </form>
 </div>
-
-</div>
 {% endblock %}
 
 {% block cards %}
-    {% for card in cards_serie_filter %}
-      {{ card.date_issue }}, {{ card.series.series }}, {{ card.number }}<br>
-    {% endfor %}
-{% endblock %}
+<div class='large-7 columns'>
 
+    {% for card in cards_serie_filter %}
+      <a href='/cards/{{ card.id }}'>
+        {{ card.date_issue }}, {{ card.series.series }}, {{ card.number }}
+      </a>
+      {% if card.profile %} 
+        <a href='/cards/{{ card.id }}'>
+          <span style='color: green'>&nbsp&nbsp<i>Show profile</i></span>
+        </a><br>
+      {% else %}
+        <a href='/cards/{{ card.id }}'>
+          <span style='color: red'>&nbsp&nbsp<i>Tie profile</i></span>
+        </a><br>
+      {% endif %}
+    {% endfor %}
+    
+    {% for card in cards_number_filter %}
+      <a href='/cards/{{ card.id }}'>
+      {{ card.date_issue }}, {{ card.series.series }}, {{ card.number }}<br>
+      </a><br>
+    {% endfor %}
+    
+</div>
+{% endblock %}
 
 
 
